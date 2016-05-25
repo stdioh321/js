@@ -1,0 +1,24 @@
+<template name="iterar">
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+    </tr>
+        
+</template>
+
+<template name="iterarDB">
+    <tr>
+        <td>
+            <input type="checkbox" checked="{{checked}}" class="item-check" />
+        </td>
+        <td>{{_id}}</td>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>
+            <a href="">
+                <span class="glyphicon glyphicon-remove-circle" ></span>
+            </a>
+        </td>
+        
+    </tr>
+</template>

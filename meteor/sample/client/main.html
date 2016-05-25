@@ -1,0 +1,51 @@
+<head>
+    <title>Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" type="text/css" /> -->
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    Task
+                </h1>
+                <form class="new-task form-inline">
+                    <input type="text" name="name" class="form-control" placeholder="Name" />
+                    <input type="text" name="email" class="form-control" placeholder="Email" />
+                    <input type="submit" value="Enviar" class="btn btn-primary" />
+
+                </form>
+                <hr />
+                {{tmpVal}}
+                <input type="text" class="form-control test-change" placeholder="Escreva ai..." />
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <!--{{testDB}}-->
+
+                        <table class="table tb-data">
+                            {{#each testDB}}
+                            {{>iterarDB}}
+                            {{/each}}
+                        </table>
+                </div>
+                <hr />
+                <table class="table table-bordered table-responsive table-hover">
+                    <tr>
+                        <td colspan="2">
+                            <b>Table Test</b>
+                        </td>
+                    </tr>
+                    {{#each test}}
+                    {{>iterar}}
+                    {{/each}}
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
