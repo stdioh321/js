@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>File Upload</title>
+		
+		<link rel="stylesheet" href="lib/resources/bootstrap/dist/css/bootstrap.css">
+
+		<script type="text/javascript" src="lib/resources/jquery/dist/jquery.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div>
+				<input type="file" id="fileUp" />
+			</div>
+			<div id="output"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var fUp = document.getElementById('fileUp');
+
+		fUp.onchange = function(ev){
+			var file = ev.target.files[0];
+
+			var url = URL.createObjectURL(file);
+			var a = document.createElement('a');
+			a.href = url;
+			a.download = file.name;
+			a.innerHTML = file.name;
+			var out=document.getElementById('output');
+			out.innerHTML = "";
+			out.appendChild(a);
+		};
+	</script>
+</html>

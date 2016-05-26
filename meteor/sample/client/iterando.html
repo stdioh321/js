@@ -7,17 +7,22 @@
 </template>
 
 <template name="iterarDB">
-    <tr>
+    <tr class="{{#if checked}}checked{{/if}}">
         <td>
             <input type="checkbox" checked="{{checked}}" class="item-check" />
         </td>
-        <td>{{_id}}</td>
-        <td>{{name}}</td>
+        <!-- <td>{{_id}}</td> -->
+        <td>
+            
+            {{#if checked}}
+                <span class="badge pull-right">C</span>
+            {{/if}}
+            
+            {{name}}
+        </td>
         <td>{{email}}</td>
         <td>
-            <a href="">
-                <span class="glyphicon glyphicon-remove-circle" ></span>
-            </a>
+            <button class="btn btn-danger remove pull-right">Remover</button>
         </td>
         
     </tr>

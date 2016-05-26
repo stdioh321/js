@@ -1,0 +1,32 @@
+/* CSS declarations go here */
+
+body{
+	background-color:#5F5F5F;
+ 
+}
+
+.container{
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0px 0px 15px black;
+	margin-top: 1em;	
+
+}
+
+.checked{
+	text-decoration: underline;
+	color: rgba(0,0,0,.5);
+	
+}
+
+
+.stylus-table
+	width 100%
+	for row in 1..4
+		tr:nth-child({row})
+			border 1px * row solid red
+			height 50px * row
+		td:nth-child({row})
+			font-size 10px * row
+			text-align center
+			

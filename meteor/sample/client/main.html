@@ -9,42 +9,67 @@
 
 
         <div class="row">
+            <div class="col-md-12">
+                {{>loginButtons}}
+            </div>
             <div class="col-md-6">
-                <h1>
-                    Task
-                </h1>
+                <h2 class="pull-left">
+                    Task {{tmpVal}}
+                </h2>
+                <label class="pull-right">
+                    Hide Checked
+                    <input type="checkbox" class="hideCheck" checked="{{hideCheck}}" />
+                </label>
+            </div>
+            <div class="col-md-6">
+                <br />
+                {{#if currentUser}}
+
                 <form class="new-task form-inline">
                     <input type="text" name="name" class="form-control" placeholder="Name" />
                     <input type="text" name="email" class="form-control" placeholder="Email" />
-                    <input type="submit" value="Enviar" class="btn btn-primary" />
+                    <input type="submit" value="Enviar" class="btn btn-primary"  />
 
                 </form>
-                <hr />
-                {{tmpVal}}
-                <input type="text" class="form-control test-change" placeholder="Escreva ai..." />
+                {{/if}}
+                <br /> 
             </div>
-            <div class="col-md-6">
-                <div>
-                    <!--{{testDB}}-->
-
-                        <table class="table tb-data">
-                            {{#each testDB}}
-                            {{>iterarDB}}
-                            {{/each}}
-                        </table>
-                </div>
-                <hr />
-                <table class="table table-bordered table-responsive table-hover">
-                    <tr>
-                        <td colspan="2">
-                            <b>Table Test</b>
-                        </td>
-                    </tr>
-                    {{#each test}}
-                    {{>iterar}}
-                    {{/each}}
+            <div class="col-md-12">
+                
+                <table class="table table-responsive tb-data">
+                    <tbody>
+                        {{#each testDB}}
+                        {{>iterarDB}}
+                        {{/each}}
+                    </tbody>
                 </table>
+                <ul class="list-group">
+                    {{#each testDB2}}
+                    <li class="list-group-item"><span class="badge">{{_id}}</span>{{name}}</li>
+                    {{/each}}
+                </ul>
+
+                
             </div>
+            <!-- <div class="col-md-12">
+                <table class="stylus-table">
+                    <tr>
+                        <td>A1</td>
+                        <td>A2</td>
+                        <td>A3</td>
+                    </tr>
+                    <tr>
+                        <td>B1</td>
+                        <td>B2</td>
+                        <td>B3</td>
+                    </tr>
+                    <tr>
+                        <td>C1</td>
+                        <td>C2</td>
+                        <td>C3</td>
+                    </tr>
+                </table>
+            </div> -->
 
         </div>
     </div>
