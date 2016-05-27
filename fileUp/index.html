@@ -16,9 +16,21 @@
 	</body>
 	<script type="text/javascript">
 		var fUp = document.getElementById('fileUp');
-
+		
+		
 		fUp.onchange = function(ev){
 			var file = ev.target.files[0];
+
+			var reader = new FileReader();
+
+			reader.onload = function(ev){
+				console.log(ev.target);
+			};
+			reader.onprogress = function(ev){
+				console.log(Math.round((ev.loaded / ev.total) * 100) + "%");
+			};
+
+			reader.readAsDataURL(file);
 
 			var url = URL.createObjectURL(file);
 			var a = document.createElement('a');
@@ -29,5 +41,8 @@
 			out.innerHTML = "";
 			out.appendChild(a);
 		};
+
+		
+
 	</script>
 </html>

@@ -14,7 +14,8 @@
             </div>
             <div class="col-md-6">
                 <h2 class="pull-left">
-                    Task {{tmpVal}}
+                    Task
+                    <img src="{{currentUser.services.twitter.profile_image_url}}" class="img-responsive" />
                 </h2>
                 <label class="pull-right">
                     Hide Checked
@@ -35,6 +36,7 @@
                 <br /> 
             </div>
             <div class="col-md-12">
+            
                 
                 <table class="table table-responsive tb-data">
                     <tbody>
@@ -43,6 +45,8 @@
                         {{/each}}
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-12">
                 <ul class="list-group">
                     {{#each testDB2}}
                     <li class="list-group-item"><span class="badge">{{_id}}</span>{{name}}</li>

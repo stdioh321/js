@@ -21,9 +21,11 @@
             {{name}}
         </td>
         <td>{{email}}</td>
+        {{#if currentUser}}
         <td>
             <button class="btn btn-danger remove pull-right">Remover</button>
         </td>
+        {{/if}}
         
     </tr>
 </template>
