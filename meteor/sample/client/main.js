@@ -6,7 +6,7 @@ import { Session } from 'meteor/session';
 
 
 import './main.html';
-
+import '../public/resources/lib/jquery/dist/jquery.js';
 
 import "../imports/api/tasks.js";
 

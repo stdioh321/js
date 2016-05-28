@@ -1,7 +1,7 @@
-<head>
+        <head>
     <title>Simple</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" type="text/css" /> -->
+
 </head>
 
 <body>
@@ -35,9 +35,9 @@
                 {{/if}}
                 <br /> 
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
-            
-                
                 <table class="table table-responsive tb-data">
                     <tbody>
                         {{#each testDB}}
@@ -45,27 +45,16 @@
                         {{/each}}
                     </tbody>
                 </table>
+                <img src="meteor.jpg" />
             </div>
-            <!-- <div class="col-md-12">
-                <table class="stylus-table">
-                    <tr>
-                        <td>A1</td>
-                        <td>A2</td>
-                        <td>A3</td>
-                    </tr>
-                    <tr>
-                        <td>B1</td>
-                        <td>B2</td>
-                        <td>B3</td>
-                    </tr>
-                    <tr>
-                        <td>C1</td>
-                        <td>C2</td>
-                        <td>C3</td>
-                    </tr>
-                </table>
-            </div> -->
-
+            
+            <!-- table>(thead>tr*3>td*3>)+(tbody>tr*3>td*3) -->
         </div>
+ 
     </div>
-</body>
+
+    
+    <!-- div.container>(div.row>div.col-md-12>header>nav>ul>li*10>a>span>)+(div.row>div.col-md-6*6>)+(div.row>div.col-md-12>footer>) -->
+
+
+    </body>
