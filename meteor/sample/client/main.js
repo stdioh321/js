@@ -3,13 +3,14 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo';
 import { Session } from 'meteor/session';
-// import 'bootstrap/dist/css/bootstrap.css';
+
 
 import './main.html';
 
 
+import "../imports/api/tasks.js";
 
-import { DB } from "../imports/api/tasks.js";
+Meteor.subscribe("db");
 
 
 //
@@ -19,62 +20,47 @@ import { DB } from "../imports/api/tasks.js";
 //});
 
 Template.body.onCreated(function bodyOnCreated(){
+
 }); 
 
 Template.body.helpers({
 
     "test": function(){
-            return [{id:1, name:"Carlos"}];
-        }
+            
+    }
     ,"testDB": function(){
-        sort = {sort:{name : 0}}
-        if(Session.get("hideCheck")){
-            return DB.find({checked:{$ne:true}}, sort);
-        }else{
-            return DB.find({},sort);
-        }
+        return DB.find();
     },
     hideCheck(){
-        return Session.get("hideCheck");
     },
     testDB2(){
-        return DB.find({checked:{$ne:true}});
-        // if(Session.get("hideCheck")){
-        // }else{
-        //     return DB.find()
-        // }
     },tmpVal(){
-        return Session.get("hideCheck");
     }
 });
     
 Template.body.events({
     "submit .new-task" : function(ev){
+        var name  = ev.target.name.value;
+        var email  = ev.target.email.value;
         
-        DB.insert({
-            name: ev.target.name.value,
-            email: ev.target.email.value
-        });
-        ev.target.name.value = "";
+        Meteor.call("insertItem", name, email);
+
         ev.target.email.value = "";
+        ev.target.name.value = "";
+        
+
         return false;
     },
     "click .tb-data .remove": function(ev){
-        DB.remove(this._id);
-        return false;
+        if(confirm("Certeza?")){
+            Meteor.call("removeItem", this);
+        }
     },
     "change .item-check" : function(ev){
-        console.log(ev);
-        DB.update(this._id, {$set: {checked: !this.checked}});
+        Meteor.call("checked", this);
     },
     "change .hideCheck": function(ev){
-        console.log(ev);
-        tmp = false
-        if (ev.target.checked) {
-            tmp = true;
-        }
 
-        Session.set("hideCheck", tmp);
     }
 });
 
