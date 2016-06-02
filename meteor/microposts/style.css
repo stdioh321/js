@@ -1,0 +1,25 @@
+/* CSS declarations go here */
+
+.content {
+    //margin-top: 100px; 
+}
+
+.posts-show img {
+    width: 50px;
+}
+
+.posts-show .table tr td:first-child {
+    width: 70px;
+}
+
+.posts-show a:link,
+.posts-show a:visited {}
+
+.posts-show .remove {
+    font-size: 2em;
+}
+
+.posts-show .table tbody tr td:first-child {
+    text-align: center;
+    vertical-align: middle;
+}

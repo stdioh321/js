@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo';
@@ -6,12 +5,12 @@ import { Session } from 'meteor/session';
 
 
 import './main.html';
-import '../public/resources/lib/jquery/dist/jquery.js';
 
-import "../imports/api/tasks.js";
+DB = new Mongo.Collection("db");
+
 
 Meteor.subscribe("db");
-
+window.m = Meteor;
 
 //
 //Template.hello.onCreated(function helloOnCreated() {
@@ -30,15 +29,15 @@ Template.body.helpers({
     }
     ,"testDB": function(){
         return DB.find();
-    },
-    hideCheck(){
-    },
-    testDB2(){
-    },tmpVal(){
     }
 });
-    
-Template.body.events({
+Template.iterarDB.helpers({
+    isOwner(){
+        return this.owner == Meteor.userId();
+    }
+});
+   
+Template.formLogin.events({
     "submit .new-task" : function(ev){
         var name  = ev.target.name.value;
         var email  = ev.target.email.value;
@@ -48,9 +47,12 @@ Template.body.events({
         ev.target.email.value = "";
         ev.target.name.value = "";
         
-
-        return false;
-    },
+        
+       return false;
+    }
+});    
+Template.body.events({
+    
     "click .tb-data .remove": function(ev){
         if(confirm("Certeza?")){
             Meteor.call("removeItem", this);
@@ -58,6 +60,7 @@ Template.body.events({
     },
     "change .item-check" : function(ev){
         Meteor.call("checked", this);
+
     },
     "change .hideCheck": function(ev){
 

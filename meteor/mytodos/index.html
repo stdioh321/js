@@ -1,0 +1,78 @@
+<head>
+  <title>MyTodos</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+  <div class="container">
+      
+      <div class="col-md-12">
+        <div>{{> loginButtons}}</div>
+        <hr />
+      </div>
+  
+      {{#if currentUser}}
+      <div class="col-md-12">
+        {{> formData}}
+      </div>
+      {{/if}}
+      
+      <div class="col-md-12">
+        {{> viewData}}
+      </div>
+  </div>
+</body>
+
+
+<template name="formData">
+  <form class="f-inline">
+
+    <input type="text" name="name" class="form-control" placeholder="Name">
+    <input type="text" name="email" class="form-control" placeholder="Email">
+    
+    <input type="submit" value="Submit" class="form-control btn btn-primary" >
+
+  </form>
+  <hr />
+</template>  
+<template name="viewData">
+
+  <table class="table table-responsive table-striped">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Created At</td>
+            <td>ID</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each todosDB}}
+            <tr class="{{#if checked}} checked {{/if}}">
+              <td>
+                
+                {{#if currentUser}}
+                <input type="checkbox" class="check" checked="{{checked}}" />
+                {{/if}}
+                
+                {{name}}
+              </td>
+              <td>{{email}}</td>  
+              <td>{{convertDate}}</td>  
+              <td>{{_id}}</td>
+              <td>
+                {{#if currentUser}}
+
+                <button class="btn btn-danger remove">
+                  Remove
+                </button>
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+</template>

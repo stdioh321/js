@@ -1,0 +1,44 @@
+<template name="home">
+	<ul class="list-group">
+		<li class="list-group-item"><a href="recipes-book" title="HOME">Recipes Book</a></li>
+		<li class="list-group-item"><a href="./" title="MAIN">Main</a></li>
+
+	</ul>
+	
+	{{#if dbHasData}}
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Name</td>
+				<td>Desc</td>
+				<td>Author</td>
+				<td>Created At</td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each testDB}}
+				<tr>
+					<td>{{_id}}</td>
+					<td>{{name}}</td>
+					<td>{{desc}}</td>
+					<td>
+						{{author}}
+					</td>
+					<td>{{createdAt}}</td>
+					<td>
+						{{#if sameUser}}
+							<button class="btn btn-danger remove">
+								Remove
+							</button>
+						{{/if}}
+
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	{{/if}}
+</template>

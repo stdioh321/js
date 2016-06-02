@@ -1,3 +1,18 @@
+<template name="formLogin">
+    <div class="col-md-6">
+                <br />
+                {{#if currentUser}}
+
+                <form class="new-task form-inline">
+                    <input type="text" name="name" class="form-control" placeholder="Name" />
+                    <input type="text" name="email" class="form-control" placeholder="Email" />
+                    <input type="submit" value="Enviar" class="btn btn-primary"  />
+
+                </form>
+                {{/if}}
+                <br /> 
+    </div>
+</template>
 <template name="iterar">
     <tr>
         <td>{{id}}</td>
@@ -10,6 +25,9 @@
     <tr class="{{#if checked}}checked{{/if}}">
         <td>
             <input type="checkbox" checked="{{checked}}" class="item-check" />
+            {{#if isOwner}}
+                <span class="badge pull-right">O</span>
+            {{/if}}
         </td>
         <!-- <td>{{_id}}</td> -->
         <td>
@@ -23,7 +41,12 @@
         <td>{{email}}</td>
         {{#if currentUser}}
         <td>
-            <button class="btn btn-danger remove pull-right">Remover</button>
+            {{createdAt}}
+        </td>
+        <td>
+            {{#if isOwner}}
+                <button class="btn btn-danger remove pull-right">Remover</button>
+            {{/if}}
         </td>
         {{/if}}
         

@@ -1,0 +1,26 @@
+/* CSS declarations go here */
+.f-inline{
+	display: flex;
+}
+.f-inline > *{
+	flex: 1;
+	flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 500px;
+}
+.f-inline > *:last-child{
+    flex-shrink: 3;
+}
+
+
+.checked{
+	text-decoration: line-through;
+	background-color: #CCC !important;
+}
+.table thead{
+	font-weight: bolder;
+	font-size: 1.2em;
+}
+.table tr{
+	transition: linear all .5s;
+}
