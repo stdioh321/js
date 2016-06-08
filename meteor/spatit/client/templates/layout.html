@@ -1,0 +1,18 @@
+<template name="layout">
+    <div class="float-right-top">
+        {{> flashMessages}}
+    </div>
+    {{> navbar}}
+    <div class="container-fluid">
+        <h2>&zwnj;</h2>
+        <div class="row">
+            <div class="col-md-2">
+                {{> sidebar}}
+            </div>
+            <div class="col-md-10">
+                {{> yield}}
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+</template>

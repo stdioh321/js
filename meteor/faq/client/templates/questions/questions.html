@@ -1,0 +1,23 @@
+<template name="questions">
+    <div class="column medium-6">
+        {{#autoForm collection='Questions' id='insertQuestionForm' type='insert' }} {{> afQuickField name="question" rows=4}} {{> afQuickField name="answer" rows=4}}
+        <button type="submit" class="button large expand">Send</button>
+        {{/autoForm}}
+        <!-- {{> quickForm collection='Questions' id='insertQuestionForm' type='insert' }} -->
+    </div>
+    <div class="column medium-6">
+        <ul class="accordion" data-accordion>
+            {{#each DB}}
+            <li class="accordion-navigation">
+                <a href="#id{{_id}}">
+            	{{question}}
+			<a href="" class="right remove">&times;</a>
+                </a>
+                <div id="id{{_id}}" class="content">
+                    <small class="right">{{createdAt}}</small> {{answer}}
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</template>

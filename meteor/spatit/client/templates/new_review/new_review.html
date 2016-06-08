@@ -1,0 +1,61 @@
+<template name="new_review">
+  
+  
+    <div class="col-md-12">
+        {{> product_table}}
+    </div>
+    <div class="col-md-12">
+        {{> add_review_form}}
+    </div>
+    <div class="col-md-12">
+        <fieldset>
+            <legend>Reviews & Rating</legend>
+            
+                {{#each reviews}}
+                <table class="table show-rating-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>{{rating}}<img src="/img/1.jpg" /></span>
+                            </td>
+                            <td>{{body}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{else}}
+                <div class="alert-warning padd">
+                    There is no Review
+                </div>
+                {{/each}}
+            
+        </fieldset>
+    </div>
+</template>
+<template name="add_review_form">
+    <fieldset>
+        <legend>Add Your Review</legend>
+        <form action="" id="formAddRating">
+            <div class="form-group">
+                <label>
+                    Rating
+                </label>
+                <select name="rating" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>
+                    Review
+                </label>
+                <textarea name="body" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </fieldset>
+</template>

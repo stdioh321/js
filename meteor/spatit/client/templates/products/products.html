@@ -1,0 +1,53 @@
+<template name="products">
+ 
+    {{#each products}} {{> product_table }} {{else}}
+    <div class="alert-warning padd">
+        There is no products avaliable.
+    </div>
+    {{/each}}
+</template>
+
+
+<template name="product_table">
+    <table class="table table-show-products">
+        <tbody>
+            <tr>
+                <td rowspan="4">
+                    <img src="{{prodImg}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>
+                        {{name}}
+                    
+                    <span class="pull-right">
+                         <a href="" class="remove"> &times; </a>
+                     </span>
+                    
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Average Rating: {{getAvg reviews}}
+                    <img src="/img/1.jpg">
+                    <small>({{reviews.length}})</small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{#if currentUser}}
+                    <a href="{{pathFor 'new_review'}}">
+                        <button class="btn btn-primary">
+                            Reviews
+                        </button>
+                    </a>
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">{{desc}}</td>
+            </tr>
+        </tbody>
+    </table>
+</template>

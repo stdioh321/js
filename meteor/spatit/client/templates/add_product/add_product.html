@@ -1,0 +1,34 @@
+<template name="add_product">
+    <!-- {{> quickForm collection='Products' id='insertProductsForm' type='insert'}} -->
+    <fieldset>
+        <legend>Add Product</legend>
+        <form action="" id="addProductForm">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Name" name="nam" />
+            </div>
+            <div class="form-group">
+                <select name="category" class="form-control">
+                    <option value="">Select Category</option>
+                    {{#each categoriesDB}}
+                    <option value="{{slug}}">{{slug}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control" name="prodImg" />
+            </div>
+            <div class="form-group">
+                <textarea name="desc" class="form-control" placeholder="Descrition"></textarea>
+            </div>
+            <div class="form-group">
+                Feature:
+                <input type="radio" name="feature" value="true">Yes
+                <input type="radio" name="feature" value="false" checked>No
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Add Product" />
+            </div>
+        </form>
+    </fieldset>
+    <img class="output" />
+</template>

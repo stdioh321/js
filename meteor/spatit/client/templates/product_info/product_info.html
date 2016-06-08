@@ -1,0 +1,19 @@
+<template name="product_info">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Reviews</h2>
+            {{> product_table}}
+        </div>
+        <div class="col-md-12">
+            <ul class="list-group">
+                {{#each reviews}}
+                <li class="list-group-item">{{rating}} - {{body}}</li>
+                {{else}}
+            <div class="alert-warning padd">
+                There is no Review
+            </div>
+            {{/each}}
+            </ul>
+        </div>
+    </div>
+</template>

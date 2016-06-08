@@ -1,0 +1,15 @@
+<template name="category_products">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                {{#each category_products}}
+                	{{> product_table}}
+                {{else}}
+                	<div class="alert-warning padd">
+                		There is no item
+                	</div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

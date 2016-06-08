@@ -17,21 +17,25 @@ standard-minifier-js    # JS minifier run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-autopublish             # Publish all data to the clients (for prototyping)
-#insecure                # Allow all DB writes from clients (for prototyping)
+#autopublish             # Publish all data to the clients (for prototyping)
+insecure                # Allow all DB writes from clients (for prototyping)
 
-twbs:bootstrap
+#twbs:bootstrap
 
 
 aldeed:collection2
 aldeed:autoform
-accounts-ui
-accounts-password
+#accounts-ui
+#accounts-password
 session
 
 iron:router
-selaias:accounts-entry
-cfs:standard-packages
-cfs:gridfs
+#selaias:accounts-entry
+#cfs:standard-packages
+#cfs:gridfs
+ewall:foundation
 
-mquandalle:stylus
+#stolinski:stylus-multi
+#girassolbit:meteor-kouto-swiss
+juliancwirko:s-jeet
+houston:admin

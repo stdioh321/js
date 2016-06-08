@@ -1,0 +1,14 @@
+<template name="sidebar">
+    <fieldset class="sidebar">
+        <legend>Products Categories</legend>
+        <ul class="list-group">
+            {{#each DB}}
+            <li class="list-group-item {{#if currentRoute slug }}abc{{/if}}">
+                <span class="pull-right"><a href="" class="remove">&times;</a></span>
+                <a href="/categories/{{slug}}" title="{{slug}}">{{name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+    </fieldset>
+    
+</template>
