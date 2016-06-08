@@ -1,0 +1,24 @@
+{
+  "name": "Agenda",
+  "homepage": "https://github.com/stdioh321/js",
+  "authors": [
+    "diaslinoh@gmail.com"
+  ],
+  "description": "Agenda em AngularJS",
+  "main": "index.html",
+  "keywords": [
+    "Angular",
+    "js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6"
+  }
+}
