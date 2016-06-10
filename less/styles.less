@@ -1,0 +1,17 @@
+@size: 100;
+@padd: 1.4;
+
+.loop(@counter; @val:1) when(@counter > 0){
+	.loop((@counter - 1));
+	&:nth-child(@{counter}){
+		border: solid red unit(1,px);
+		padding-left: unit(@counter*@padd,px);
+		//padding-right: unit(@counter,em);
+	}
+}
+
+
+.loop{
+	overflow: hidden;
+	.loop(@size,@padd);
+}

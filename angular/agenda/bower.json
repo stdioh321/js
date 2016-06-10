@@ -19,6 +19,12 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.6"
+    "angular": "^1.5.6",
+    "jquery": "^2.2.4",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.6",
+    "angular-animate": "^1.5.6",
+    "masonry": "^4.1.0",
+    "font-awesome": "^4.6.3"
   }
 }

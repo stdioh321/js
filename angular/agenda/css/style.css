@@ -1,0 +1,40 @@
+.main-menu {
+    background-color: black;
+}
+
+.main-menu a:link,
+.main-menu a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.main-menu a:hover {
+    color: yellow;
+}
+
+.main-menu ul {
+    padding: 0;
+}
+
+.main-menu ul li {
+    display: inline-block;
+    list-style: none;
+    padding: 1em;
+}
+
+.padd {
+    padding: 1em;
+    margin-bottom: .5em;
+}
+
+.checked {
+    background-color: #CCC;
+}
+
+@media screen and (max-width: 400px) {
+    .table,
+    .table button,
+    .table input {
+        font-size: .89em;
+    }
+}
