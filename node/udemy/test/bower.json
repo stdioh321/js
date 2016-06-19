@@ -1,0 +1,24 @@
+{
+  "name": "test",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "John Roberto <diaslino@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/stdioh321/js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-qrcode": "lrsjng/jquery-qrcode#^0.14.0",
+    "jquery": "^3.0.0",
+    "bootstrap": "^3.3.6",
+    "less": "^2.7.1",
+    "angular": "^1.5.7"
+  }
+}

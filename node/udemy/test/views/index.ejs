@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<% include head %>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <%= JSON.stringify(query) %>
+                    </p>
+                    <hr />
+                    <ul class="list-group">
+                        <%
+                        
+                        list.forEach(function(el, index){ %>
+                            <li class="list-group-item">
+                                <%= el %>
+                            </li>
+                            <% }); %>
+                    </ul>
+                    <hr />
+                    <p>
+                        <% params %>
+                    </p>
+                </div>
+            </div>
+            <% include foot %>
+        </div>
+    </body>
+
+</html>

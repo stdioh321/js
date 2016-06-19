@@ -1,0 +1,37 @@
+@import 'bower_components/nib/lib/nib';
+
+
+bordering(clr = black)
+	border solid 1px clr 
+
+addContent(a="A",b="B")
+	&:after
+		content ""
+	&:before
+		content ""
+
+cond(var)
+	if var
+		border solid red 1px
+	else
+		border solid blue 1px
+		
+		
+
+primary = #00AA77
+div
+	&.loop
+		border-radius 4px;
+		addContent("jao", "jumentao")
+body
+	height 100vh
+	// background  linear-gradient(bottom right, #2222AA, 80% #0077DD)
+	cond(true)
+.loop
+	border solid red 1px
+	width (99% / 2)
+	display inline-block
+a
+	overflow ellipsis
+	shadow-stroke(blue)
+	font-size 2em

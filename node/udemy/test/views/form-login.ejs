@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<% include head %>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <fieldset>
+                        <legend>Form Login</legend>
+                        <form action="/login" method="POST" id="formSub">
+                            <div class="form-group">
+                                <label for="">Username</label>
+                                <input type="text" class="form-control" name="username" />
+                            </div>
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type="password" class="form-control" name="password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-block" />
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
+            </div>
+            <% include foot %>
+        </div>
+        <script>
+            $('#formSub').on('submit', function(ev) {
+                username = $(this)[0].username.value;
+                password = $(this)[0].password.value;
+                var objSend = {
+                    username,
+                    password
+                };
+                // console.log(objSend);
+                $.ajax({
+                    method: "POST",
+                    // data: objSend,
+                    url: "/login"
+                }).done(function(data) {
+                    console.log("SUCCESS", data);
+                }).fail(function(data) {
+                    console.log("FAIL: ", data);
+                });
+                return false;
+            });
+        </script>
+    </body>
+
+</html>

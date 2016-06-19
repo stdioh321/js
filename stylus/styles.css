@@ -1,0 +1,27 @@
+div.loop {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+div.loop:after {
+  content: "";
+}
+div.loop:before {
+  content: "";
+}
+body {
+  height: 100vh;
+  border: solid #f00 1px;
+}
+.loop {
+  border: solid #f00 1px;
+  width: 49.5%;
+  display: inline-block;
+}
+a {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  text-shadow: -1px -1px 0 #00f, 1px -1px 0 #00f, -1px 1px 0 #00f, 1px 1px 0 #00f;
+  font-size: 2em;
+}

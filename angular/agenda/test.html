@@ -2,38 +2,162 @@
 
 <head>
     <title>Modal Test</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/lib/bootstrap/dist/css/bootstrap.css" />
     <script type="text/javascript" src="resources/lib/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="resources/lib/masonry/dist/masonry.pkgd.min.js"></script>
     <script type="text/javascript" src="resources/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <style type="text/css">
+    @media screen and (max-width: 601px) {
+        .menu {
+            height: 35px;
+            //background-color: red;
+        }
+        .menu ul {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu ul li {
+            list-style: none;
+            flex: 1;
+            border: solid red 1px;
+            text-align: center;
+        }
+        .menu a {}
+        .pn-main {
+            height: calc(100vh - 35px);
+            border: solid green 1px;
+            overflow-y: auto;
+            
+        }
+        
+    }
+    
+    @media screen and (min-width: 600px) {
+        .menu {
+            height: 100%;
+            width: 15vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            border: solid red 1px;
+            background-color: #CCC;
+        }
+        .menu ul {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .menu ul li {
+            flex: 1;
+            text-align: center;
+            list-style: none;
+            font-size: 1.5em;
+            /*height: 100%;*/
+        }
+        .pn-main {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        .pn {
+            /*border: solid red 3px;*/
+            width: 70vw;
+            max-width: 1200px;
+            height: 100%;
+            position: absolute;
+            padding: 2em !important;
+            transition: linear all .7s;
+            transform: translateX(15vw);
+            overflow-y: auto;
+        }
+    }
+    </style>
 </head>
 
 <body>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Launch demo modal
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="#a">a</a></li>
+            <li><a href="#b">b</a></li>
+            <li><a href="#c">c</a></li>
+            <li><a href="#d">d</a></li>
+            <li><a href="#e">e</a></li>
+            <li><a href="#f">f</a></li>
+        </ul>
+    </nav>
+    <div class="pn-main">
+        <div class="pn col-xs-12 col-sm-12" id='a'>
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+            <br />
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+            <br />
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+            <br />
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+            <br />
+
+        </div>
+        <div class="pn col-xs-12 col-sm-12" id='b'>
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+        </div>
+        <div class="pn col-xs-12 col-sm-12" id='c'>
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+        </div>
+        <div class="pn col-xs-12 col-sm-12" id='d'>
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+        </div>
+        <div class="pn col-xs-12 col-sm-12" id='e'>
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
+        </div>
+        <div class="pn col-xs-12 col-sm-12" id='f'>
+            A text display is an electronic alphanumeric display device that is mainly or only capable of showing text, or extremely limited graphic characters. This includes electromechanical split-flap displays, vane displays, and flip-disc displays; all-electronic liquid-crystal displays, incandescent eggcrate displays, LED displays, and vacuum fluorescent displays; and even electric nixie tubes. There are several ways to form text for display. A segment display uses lines, while a dot-matrix display uses a grid of dots, and both of these are seen in LCD, LED, VFD, and vane/disc types. For split-flap displays, the characters or words are pre-printed, and for nixie tubes the shapes are also pre-formed. In any case, the display elements are controlled by electronics which activate them in the correct physical and temporal sequence to show the desired information. Text displays are used in everything from clocks (clock radios, wristwatches) to variable-message signs (departure boards, intelligent transportation systems), because until the late 2000s, they were (and in many cases still are) the least expensive for their purpose.
         </div>
     </div>
+    <script type="text/javascript">
+    if (window.screenX > 600) {
+        var tot = 70;
+        $(".pn").each(function(idx, el) {
+            $(this).on("click", function(ev) {
+                if (!this.hasAttribute('current')) {
+                    changePanel(-idx);
+                }
+            });
+            $(this).css({
+                'left': (idx * tot) + '%'
+            }).attr('pos-val', idx);
+        });
+        $(".menu li a").each(function(idx, el) {
+            $(this).attr('href', "#");
+            $(this).on("click", function(ev) {
+                changePanel(-idx);
+            });
+        });
+
+        function changePanel(pos) {
+            tmpPos = pos;
+            removeCurr();
+            $(".pn").each(function(idx, el) {
+                if (idx == -pos) {
+                    $(this).attr('current', 'true');
+                }
+                this.style.left = (tot * tmpPos) + '%';
+                tmpPos++;
+            });
+        }
+
+        function removeCurr() {
+            $(".pn").removeAttr('current');
+        }
+
+        changePanel(0);
+    }
+    </script>
 </body>
 
 </html>
