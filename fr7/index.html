@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html ng-app="guabus">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>APP</title>
+    <!-- Path to Framework7 iOS CSS theme styles-->
+    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.css">
+    <!-- Path to Framework7 ios related color styles -->
+    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.colors.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="bower_components/Framework7/dist/css/my-app.css">
+    <!-- CSS LIB -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <!-- JS LIB -->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <!-- JSON RESOURCES-->
+    <script src="resources/json/linhas.js"></script>
+    <script src="resources/json/linhas_detalhe.js"></script>
+    <!-- JS RESOURCES-->
+    <script src="resources/js/app.js"></script>
+    <script src="resources/js/controllers.js"></script>
+</head>
+
+<body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-right panel-reveal">
+        <div class="content-block">
+            <p>RIGHT PANEL</p>
+        </div>
+    </div>
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>Busca</p>
+            <a href="contact.html">Contact app</a>
+            <p>Busca por Rua</p>
+            <a href="about.html">Contact app</a>
+            <p>Recentes</p>
+            <a href="about.html">Contact app</a>
+        </div>
+    </div>
+    <div class="views">
+        <div class="view view-main">
+            <!-- Navbar -->
+            <div class="navbar">
+                <!-- Home page navbar -->
+                <div class="navbar-inner" data-page="index" ng-controller="mainCtrl">
+                    <div class="left "></div>
+                    <div class="center">{{title}}</div>
+                    <div class="right">
+                    </div>
+                </div>
+                <!-- About page navbar -->
+                <div class="navbar-inner cached" data-page="detalhes" ng-controller="mainCtrl">
+                    <div class="left ">
+                        <a href="" class="back">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="center">Detalhes</div>
+                    <div class="right">
+                        <a href="#" data-popup=".popup-about" class="open-popup">
+                            <i class="fa fa-map-o" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Services page navbar -->
+                <div class="navbar-inner cached" data-page="services">
+                    <div class="left "><a href="" class="back">Back</a></div>
+                    <div class="center">Services</div>
+                </div>
+            </div>
+            <!-- Pages -->
+            <div class="pages navbar-through  navbar-fixed ">
+                <!-- Home page -->
+                <div class="page" data-page="index" ng-controller="mainCtrl">
+                    <form data-search-list=".list-block-search" data-search-in=".item-title,.item-after" class="searchbar searchbar-init">
+                        <div class="searchbar-input">
+                            <input type="search" placeholder="Search">
+                            <a href="#" class="searchbar-clear"></a>
+                        </div><a href="#" class="searchbar-cancel">Cancel</a>
+                    </form>
+                    <!-- Search Bar overlay -->
+                    <div class="searchbar-overlay"></div>
+                    <!-- This block will be displayed if nothing found -->
+                    <div class="content-block searchbar-not-found">
+                        <div class="content-block-inner">Nada Encontrado</div>
+                    </div>
+                    <div class="page-content">
+                        <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
+                        <div class="list-block media-list list-block-search searchbar-found">
+                            <ul>
+                                <li ng-repeat="item in linhas">
+                                    <a href="#detalhes" class="item-link item-content" ng-click="carregaLinhaDetalhe(item)">
+                                        <!-- <div class="item-media">
+                                                <i class="icon icon-f7"></i>
+                                            </div> -->
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">
+                                                    {{item.codigo}} - {{item.origem}}
+                                                </div>
+                                            </div>
+                                            <!-- <div class="item-subtitle">Beatles</div> -->
+                                            <div class="item-text">{{item.destino}}</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Detalhes page -->
+                <div class="page cached " data-page="detalhes" ng-controller="mainCtrl">
+                    <div class="page-content hide-bars-on-scroll">
+                        <div class="content-block">
+                            <div class="list-block media-list accordion-list">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <a href="#" class="button active button-fill" ng-if="!linhaDetalhes.sentido" ng-click="montaLinhaDetalhada(true)">IDA</a>
+                                                <a href="#" class="button active button-fill" ng-if="linhaDetalhes.sentido" ng-click="montaLinhaDetalhada(false)">VOLTA</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-divider"></li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-media">
+                                                {{linhaDetalhes.codigo}}
+                                            </div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">{{linhaDetalhes.origem}}</div>
+                                                    <div class="item-after">
+                                                        <div class="item-input">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-text">{{linhaDetalhes.destino}}</div>
+                                                <div class="item-subtitle">{{linhaDetalhes.operadora}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-divider"></li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Tarifa: {{linhaDetalhes.tarifa}}</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-divider"></li>
+                                    <li class="accordion-item">
+                                        <a href="#" class="item-link">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title-row">
+                                                        <div class="item-title">Itinerario</div>
+                                                        <!-- <div class="item-after">Element label</div> -->
+                                                    </div>
+                                                    <!-- <div class="item-subtitle">Subtitle</div> -->
+                                                    <!-- <div class="item-text"></div> -->
+                                                    <div class="accordion-item-content">
+                                                        <div class="content-block">
+                                                            <div ng-repeat="(key,value) in linhaDetalhes.itinerario track by key">
+                                                                {{value}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="item-divider"></li>
+                                    <li class="accordion-item">
+                                        <a href="#" class="item-link">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title-row">
+                                                        <div class="item-title">Semana</div>
+                                                        <!-- <div class="item-after">Element label</div> -->
+                                                    </div>
+                                                    <!-- <div class="item-subtitle">Subtitle</div> -->
+                                                    <!-- <div class="item-text"></div> -->
+                                                    <div class="accordion-item-content">
+                                                        <div class="content-block">
+                                                            <p>
+                                                                {{linhaDetalhes.horarios.semana}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="item-divider"></li>
+                                    <li class="accordion-item">
+                                        <a href="#" class="item-link">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title-row">
+                                                        <div class="item-title">Sabado</div>
+                                                        <!-- <div class="item-after">Element label</div> -->
+                                                    </div>
+                                                    <!-- <div class="item-subtitle">Subtitle</div> -->
+                                                    <!-- <div class="item-text"></div> -->
+                                                    <div class="accordion-item-content">
+                                                        <div class="content-block">
+                                                            <p>
+                                                                {{linhaDetalhes.horarios.sabado}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="item-divider"></li>
+                                    <li class="accordion-item">
+                                        <a href="#" class="item-link">
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title-row">
+                                                        <div class="item-title">Domingo</div>
+                                                        <!-- <div class="item-after">Element label</div> -->
+                                                    </div>
+                                                    <!-- <div class="item-subtitle">Subtitle</div> -->
+                                                    <!-- <div class="item-text"></div> -->
+                                                    <div class="accordion-item-content">
+                                                        <div class="content-block">
+                                                            <p>
+                                                                {{linhaDetalhes.horarios.domingo}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Services page -->
+            </div>
+        </div>
+    </div>
+    <!-- About Popup -->
+    <div class="popup popup-about">
+        <div class="navbar">
+            <div class="navbar-inner" data-page="index" ng-controller="mainCtrl">
+                <div class="left ">
+                    <p><a href="#" class="close-popup">Close</a></p>
+                </div>
+                <div class="center"></div>
+                <div class="right"></div>
+            </div>
+        </div>
+        <div class="content-block">
+            <div id="map"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="resources/app.js"></script>
+    <script type="text/javascript" src="resources/utils.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTbk54QQ8sHvqi0QhZ0HAAoQa_pllO4Co"></script>
+</body>
+
+</html>

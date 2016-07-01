@@ -1,0 +1,30 @@
+{
+  "name": "GuarBus",
+  "homepage": "https://github.com/stdioh321/js",
+  "authors": [
+    "diaslinoh@gmail.com"
+  ],
+  "description": "Guarulhos Onibus",
+  "main": "index.html",
+  "keywords": [
+    "Onibus",
+    "Guarulhos"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
+    "angucomplete-alt": "^2.4.1",
+    "Swiper": "swiper#^3.3.1",
+    "dexie": "^1.4.1"
+  }
+}

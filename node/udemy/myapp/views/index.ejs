@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <title>Node & Angular</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="lib/toastr/toastr.css">
+
+
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/toastr/toastr.js"></script>
+
+
+
+    <script>
+        toastr.options.progressBar = true;
+        toastr.options.positionClass = "toast-top-center";
+        
+        var app = angular.module("myApp", ['ngRoute']);
+        app.run(function($rootScope, $route) {
+
+            $rootScope.getRoutesUrl = function() {
+                var tmp = [];
+
+                for (r in $route.routes) {
+
+                    if ($route.routes[r].redirectTo != undefined) {
+                        tmp.push($route.routes[r].redirectTo);
+                    }
+                }
+                return tmp;
+            }
+        });
+        app.config(function($routeProvider) {
+            $routeProvider
+
+            // route for the home page
+                .when('/', {
+                    templateUrl: 'views/home.html'
+                })
+                .when('/tmp', {
+                    templateUrl: 'views/tmp.html',
+                    controller: "tmpCtrl",
+                    resolve: {
+                        dbData: function($http) {
+                            return $http({
+                                method: "GET",
+                                url: "api/person/"
+                            }).then(function(data) {
+                                return data;
+                            }, function(data) {
+                                return data;
+                            });
+                        }
+                    }
+                })
+                .when('/person/:id', {
+                    templateUrl: 'views/person-info.html',
+                    controller: "personCtrl"
+                });
+        });
+    </script>
+
+    <script src="js/controllers.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <ul class="list-group list-inline">
+                    <li class="list-group-item" ng-repeat="item in getRoutesUrl()"><a href="/#{{item}}">{{item}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div ng-view></div>
+    </div>
+</body>
+
+</html>

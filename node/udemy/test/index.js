@@ -6,18 +6,24 @@ var port = process.env.PORT || 3000;
 var app = express();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
-var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://stdioh321:stdioh321@ds023902.mlab.com:23902/stdioh321');
 
-var Schema = mongoose.Schema;
-var personSchema = new Schema({
-    firstname: String,
-    lastname: String,
-    address: String
-});
 
-var Person = mongoose.model('Person', personSchema);
+
+
+// mongoose.connect('mongodb://stdioh321:stdioh321@ds023902.mlab.com:23902/stdioh321');
+
+// var Schema = mongoose.Schema;
+// var personSchema = new Schema({
+//     firstname: {
+//         type: String,
+//         max: 4
+//     },
+//     lastname: String,
+//     address: String
+// });
+
+// var Person = mongoose.model('Person', personSchema);
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -83,24 +89,77 @@ app.get('/db', function(req, res) {
     });
 });
 
+
+// app.post('/db-mongo', function(req, res) {
+//     var user = Person({
+//         firstname: "Mario Bros",
+//         lastname: "Nindendosssssssssssssssssss",
+//         address: "64 Nintendo Street"
+//     });
+//     user.save(function(err) {
+//         if (err) throw err;
+//         res.send("Success!!!");
+//     });
+// });
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/local');
+var sch = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, "Name is requiredddddddddddddddddddd"]
+    },
+    email: {
+        type: String
+    },
+    gender: {
+        type: String,
+        enum: ["m", "f"],
+        required: [true, "Gender is required"]
+    }
+});
+
+var Person = mongoose.model('person', sch, 'person');
+
+
+
+// p1.save(function(err) {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log("OKKKKKKKK KKKK");
+// });
 app.get('/db-mongo', function(req, res) {
-    Person.find({}, function(err, data) {
-        if (err) throw err;
+    Person.find({
+        $or: [{
+            "gender": "m"
+        }, {
+            "gender": "f"
+        }]
+    }, function(err, data) {
+        if (err) console.log(err);
+
         res.send(data);
     });
 });
-app.post('/db-mongo', function(req, res) {
-    var user = Person({
-        firstname: "Mario",
-        lastname: "Nindendo",
-        address: "64 Nintendo St"
+app.post('/db-mongo', urlencodedParser, function(req, res) {
+    var p1 = new Person({
+        name: req.body.name,
+        email: req.body.email,
+        gender: req.body.gender
     });
-    user.save(function(err) {
-        if (err) throw err;
-        res.send("Success!!!");
+
+    p1.save(function(err) {
+        if (err) {
+            tmpSend = [req.body, err.errors];
+            res.send(tmpSend);
+            // res.send(err.errors);
+        } else {
+            res.send("Success");
+        }
+
     });
 });
-
 app.listen(port);
 
 // var server = http.createServer(function(req, res) {

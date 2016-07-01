@@ -1,0 +1,23 @@
+{
+  "name": "fr7",
+  "homepage": "https://github.com/stdioh321/js",
+  "authors": [
+    "John Roberto <diaslino@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Framework7": "framework7#^1.4.2",
+    "jquery": "^3.0.0",
+    "angular": "^1.5.7",
+    "font-awesome": "^4.6.3"
+  }
+}

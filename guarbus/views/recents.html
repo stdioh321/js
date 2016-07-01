@@ -1,0 +1,14 @@
+<h2>Recentes</h2>
+<table class="table">
+    <tbody>
+        <tr ng-repeat="item in recentes | orderBy:'-data'">
+            <td>
+                <a href="" ng-click="loadLinhaRecente(item.linha)">
+                    <p>{{item.linha.codigo}} - {{item.linha.origem}}</p>
+                    <small>{{item.linha.destino}}</small>
+                </a>
+            </td>
+            <td>{{item.data | date:'dd/MM/yy HH:mm:ss'}}</td>
+        </tr>
+    </tbody>
+</table>

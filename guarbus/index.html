@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="" ng-app="guabus">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GuaBus</title>
+    <!-- CSS LIBS-->
+    <link rel="stylesheet" href="resources/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="resources/lib/angucomplete-alt/angucomplete-alt.css" />
+    <link rel="stylesheet" href="resources/lib/Swiper/dist/css/swiper.css" />
+    <!-- CSS LIBS END-->
+    <!-- CSS RESOURCES-->
+    <link rel="stylesheet" href="resources/css/style.css" />
+    <!-- CSS RESOURCES END-->
+    <!-- JS LIBS-->
+    <script type="text/javascript" src="resources/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="resources/lib/Swiper/dist/js/swiper.js"></script>
+    <script type="text/javascript" src="resources/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="resources/lib/bootstrap/js/collapse.js"></script>
+    <script type="text/javascript" src="resources/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="resources/lib/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+    <script src="resources/lib/dexie/dist/dexie.js"></script>
+    <!-- JS LIBS END-->
+    <!-- JS JSON -->
+    <script type="text/javascript" src="resources/json/linhas.js"></script>
+    <script type="text/javascript" src="resources/json/linha_detalhe.js"></script>
+    <!-- JS JSON END-->
+    <!--JS RESOURCES-->
+    <!-- APP -->
+    <script src="resources/js/app.js"></script>
+    <!-- CONTROLLERS -->
+    <script src="resources/js/controllers.js"></script>
+    <!-- ROUTES -->
+    <script src="resources/js/routes.js"></script>
+    <!--JS RESOURCES END-->
+</head>
+
+<body ng-controller="mainCtrl">
+    <div ng-include="'views/modal-map.html'"></div>
+    <ul class="nav nav-tabs menu">
+        <li class="active">
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="">Recentes</a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="swiper-container content">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide" id="main">
+                    <div ng-include="'views/main.html'"></div>
+                </div>
+                <div class="swiper-slide" id="recents">
+                    <div ng-include="'views/recents.html'"></div>
+                </div>
+                ...
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- If we need navigation buttons -->
+            <!-- <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> -->
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+        <!-- <div ui-view class="content"></div> -->
+        <div class="footer">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- GruBus -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8292462256462069" data-ad-slot="9774620436" data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <script src="resources/js/utils.js"></script>
+    <script src="resources/js/indexeddb.js"></script>
+</body>
+
+</html>

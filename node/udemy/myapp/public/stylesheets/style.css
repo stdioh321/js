@@ -1,0 +1,7 @@
+.alert-danger,
+.alert-warning,
+.alert-success {
+  padding: 1em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}

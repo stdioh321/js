@@ -1,0 +1,67 @@
+<div>
+    <div>
+        <div angucomplete-alt id="ex1" placeholder="Busca por Nº Linha / Nome" maxlength="50" pause="700" selected-object="searchResult" local-data="linhas" search-fields="codigo,origem,destino" title-field="codigo,origem" minlength="1" input-class="form-control form-control-small" match-class="highlight" text-searching="Buscando....." description-field="destino" clear-selected="true" text-no-results="Nenhum registro encontrado">
+        </div>
+    </div>
+    <div ng-show="showTableDetail">
+        <br/>
+        <div class="pull-left">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Mapa</button>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-primary" ng-disabled="currentDir" ng-click="changeDirection(true)">IDA</button>
+            <button class="btn btn-primary" ng-disabled="! currentDir" ng-click="changeDirection(false)">VOLTA</button>
+        </div>
+        <br/>
+        <table class="table table-details">
+            <tbody>
+                <tr>
+                    <td>Linha</td>
+                    <td>{{linhaDetalhada.codigo}} - {{linhaDetalhada.origem}} </td>
+                </tr>
+                <tr>
+                    <td>Destino</td>
+                    <td>{{linhaDetalhada.destino}} </td>
+                </tr>
+                <tr>
+                    <td>Tarifa</td>
+                    <td>{{linhaDetalhada.tarifa}} </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#itinerario" data-toggle="collapse"><span class="text-center">Itinerario</span></a>
+                    </td>
+                    <td>
+                        <div id="itinerario" class="collapse">
+                            <span ng-repeat="(key,value) in linhaDetalhada.itinerario track by key">{{value}}<br /></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#semana" data-toggle="collapse">Semana</a></td>
+                    <td>
+                        <div id="semana" class="collapse">
+                            {{linhaDetalhada.semana}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#sabado" data-toggle="collapse">Sabado</a></td>
+                    <td>
+                        <div id="sabado" class="collapse">
+                            {{linhaDetalhada.sabado}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#domingo" data-toggle="collapse">Domingo</a></td>
+                    <td>
+                        <div id="domingo" class="collapse">
+                            {{linhaDetalhada.domingo}}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

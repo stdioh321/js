@@ -1,0 +1,51 @@
+<div class="row">
+
+    <div class="col-md-6">
+        <fieldset>
+            <legend>Add Person</legend>
+            <form method="POST" name="formAddPerson">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" name="name" ng-model="person.name" ng-required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" name="email" ng-model="person.email" ng-required="true" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" ng-click="addNewPerson(person)" ng-disabled="formAddPerson.$invalid">Send</button>
+                </div>
+                
+                <div class="alert-danger" ng-show="formAddPerson.name.$error.required && formAddPerson.name.$dirty">
+                    Name is required
+                </div>
+                <div class="alert-danger" ng-show="formAddPerson.email.$error.required && formAddPerson.email.$dirty">
+                    Email is required
+                </div>
+                <div class="alert-warning" ng-show="person">
+                    {{person}}
+                </div>
+            </form>
+        </fieldset>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <tbody>
+                <tr ng-repeat="item in dbData.data">
+                    <td>
+                        <a href="#/person/{{item._id}}">
+                            {{item.name}}
+                        </a>
+
+                        <span class="pull-right">
+                            <button class="btn btn-danger pull-right" ng-click="removePerson(item)">
+                                &times;
+                            </button>
+                        </span>
+                        <span class="badge pull-right">{{item.email}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

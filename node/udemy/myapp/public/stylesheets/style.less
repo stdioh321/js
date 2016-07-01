@@ -1,0 +1,14 @@
+@padd: 1em;
+@marg: .3em;
+.padd(){
+	&{
+		padding: @padd;
+		margin-top: @marg;
+		margin-bottom: @marg;
+	}
+}
+
+.alert-danger,.alert-warning,.alert-success{
+	.padd();
+}
+

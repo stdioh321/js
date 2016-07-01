@@ -1,0 +1,61 @@
+#collapse2.panel-collapse {
+    overflow-y: auto;
+    height: 200px;
+}
+
+.angucomplete-description {
+    font-size: .7em;
+}
+
+.angucomplete-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.highlight {
+    color: red;
+    font-weight: bolder;
+}
+
+.menu,
+.content,
+.footer {
+    border: solid red 0px;
+}
+
+.container {
+    overflow-y: hidden;
+}
+
+.menu {
+    height: 50px !important;
+}
+
+.content {
+    /*height: calc(100vh - 50px - 90px);
+    max-height: calc(100vh - 50px - 90px);*/
+    /*overflow-y: auto;*/
+    min-height: calc(100vh - 50px - 90px);
+    margin-bottom: 90px;
+}
+
+.footer {
+    height: 90px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: solid red 0px;
+    background-color: white;
+    z-index: 10;
+}
+
+.table-details tr td:first-child {
+    width: 20%;
+}
+
+#map {
+    height: 90vh;
+    width: 100%;
+}
