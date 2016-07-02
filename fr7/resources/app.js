@@ -31,6 +31,11 @@ $$(document).on('pageInit pageReinit', function(e) {
 
 $$('.popup-about').on('open', function() {
     initMap();
+    
+});
+$$('.popup-about').on('close', function() {
+    removeBusInterval(busInterval);
+    
 });
 
 myApp.onPageBack("detalhes", function(page) {

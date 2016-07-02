@@ -5,6 +5,8 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Simple Polylines</title>
+    <script src="resources/json/lines.js"></script>
+    <script src="resources/json/linesDetails.js"></script>
     <style>
     html,
     body {
@@ -22,44 +24,146 @@
 <body>
     <div id="map"></div>
     <script>
-    // This example creates a 2-pixel-wide red polyline showing the path of William
-    // Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
-    // Brisbane, Australia.
-
+    var itinerario = [
+        "Rua Louren\u00e7o Ricco",
+        "Av. Bar\u00e3o do Rio Branco",
+        "Rua Endres",
+        "Rua \u00c1guia",
+        "Av. Rotary",
+        "Av. Carlos Ferreira Endres",
+        "Rua Cavadas?",
+        "Rua Maria Candida Pereira",
+        "Rua Mato Grosso",
+        "Rua Moderna",
+        "Rua Tibet",
+        "Rua Deus do Sol",
+        "Rua Santa Angelina",
+        "Rua Alegre",
+        "Rua Lima",
+        "Travessa Leon Diniz",
+        "Rua Freire de Andrade",
+        "Av. Em\u00edlio Ribas",
+        "Rua Conego Valad\u00e3o",
+        "Rua Joaquim Miranda",
+        "Av. Guarulhos",
+        "Av. Mal. Humberto de A. Castelo Branco",
+        "Pca IV Centenario",
+        "Av. Antonio de Souza",
+        "Av. At\u00edlio Trevisan",
+        "Rua Dr. Washington Luiz",
+        "Rua Padre Celestino",
+        "Rua Dom Pedro II",
+        "Rua Joao Goncalves",
+        "Av. Sen. Salgado Filho",
+        "Rua Santa Concei\u00e7\u00e3o-ret. Operacional"
+    ];
     var map;
+    var directionsDisplay;
+    var directionsService;
+    var flightPlanCoordinates;
 
-    function initMap() {
+    function initMapClean() {
         var myLatLng = {
             lat: -23.4769317,
             lng: -46.5271534
         };
-        
+
         map = new google.maps.Map(document.getElementById('map'), {
             center: myLatLng,
-            zoom: 12
+            zoom: 13
         });
-        
     }
-    // var flightPlanCoordinates = [{
-    //     lat: -23.4801259,
-    //     lng: -46.3669983
-    // }, {
-    //     lat: -23.4836604,
-    //     lng: -46.5465585
-    // }, {
-    //     lat: -23.4816504,
-    //     lng: -46.5455685
-    // }];
-    // var flightPath = new google.maps.Polyline({
-    //     path: flightPlanCoordinates,
-    //     geodesic: true,
-    //     strokeColor: '#FF0000',
-    //     strokeOpacity: 1.0,
-    //     strokeWeight: 2
-    // });
 
-    // flightPath.setMap(map);
+    function initMap() {
+        directionsDisplay = new google.maps.DirectionsRenderer;
+        directionsService = new google.maps.DirectionsService;
+        var myLatLng = {
+            lat: -23.4769317,
+            lng: -46.5271534
+        };
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 13
+        });
+        var geocoder = new google.maps.Geocoder();
+        flightPlanCoordinates = [];
+
+        itinerario.forEach(function(el, idx) {
+            geocoder.geocode({
+                'address': el + ",Guarulhos"
+            }, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    // map.setCenter(results[0].geometry.location);
+                    // flightPlanCoordinates.push({
+                    //     lat: results[0].geometry.location.lat(),
+                    //     lng: results[0].geometry.location.lng()
+                    // });
+                    flightPlanCoordinates.push({
+                        lat: results[0].geometry.location.lat(),
+                        lng: results[0].geometry.location.lng()
+                    });
+
+                    flightPath = new google.maps.Polyline({
+                        path: flightPlanCoordinates,
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 4
+                    });
+
+                    flightPath.setMap(map);
+                    // console.log(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    // console.log(el,"Nao encontrada");
+                }
+            });
+        });
+
+
+
+
+    }
+
+    function initMap2() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: {
+                lat: -34.397,
+                lng: 150.644
+            }
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({
+            'address': address
+        }, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
     </script>
+    <!--
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTbk54QQ8sHvqi0QhZ0HAAoQa_pllO4Co&callback=initMap"></script>
+    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTbk54QQ8sHvqi0QhZ0HAAoQa_pllO4Co&callback=initMap"></script>
 </body>
 

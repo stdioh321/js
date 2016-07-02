@@ -11,6 +11,7 @@ var linhas = [{
     "origem_lng": "-46.3669983",
     "sentido": "IDA",
     "tarifa": "3.80"
+
 }, {
     "chElemento": 7373,
     "chRegiao": 256,
@@ -999,13 +1000,14 @@ var linhas = [{
     "origem_lng": "-46.5337925",
     "sentido": "IDA",
     "tarifa": "3.80"
+
 }, {
     "chElemento": 7373,
     "chRegiao": 256,
     "codigo": "700",
     "destino": "CENTRO (via Ayton Senna)",
-    "destino_lat": "-23.4559836",
-    "destino_lng": "-46.3381515",
+    "destino_lat": "-23.4598165",
+    "destino_lng": "-46.5328998",
     "operadora": "V. Campo dos Ouros Ltda.",
     "origem": "VILA ANY",
     "origem_lat": "-23.4542498",

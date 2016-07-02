@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- Your app title -->
     <title>APP</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.ico" />
     <!-- Path to Framework7 iOS CSS theme styles-->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.css">
     <!-- Path to Framework7 ios related color styles -->
@@ -19,11 +20,14 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <!-- JS LIB -->
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
     <!-- JSON RESOURCES-->
     <script src="resources/json/linhas.js"></script>
     <script src="resources/json/linhas_detalhe.js"></script>
+    <script src="resources/json/lines.js"></script>
+    <script src="resources/json/linesDetails.js"></script>
     <!-- JS RESOURCES-->
     <script src="resources/js/app.js"></script>
     <script src="resources/js/controllers.js"></script>
@@ -85,7 +89,7 @@
             <div class="pages navbar-through  navbar-fixed ">
                 <!-- Home page -->
                 <div class="page" data-page="index" ng-controller="mainCtrl">
-                    <form data-search-list=".list-block-search" data-search-in=".item-title,.item-after" class="searchbar searchbar-init">
+                    <form data-search-list=".list-block-search" data-search-in=".item-text,.item-title" class="searchbar searchbar-init">
                         <div class="searchbar-input">
                             <input type="search" placeholder="Search">
                             <a href="#" class="searchbar-clear"></a>
@@ -101,56 +105,86 @@
                         <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
                         <div class="list-block media-list list-block-search searchbar-found">
                             <ul>
-                                <li ng-repeat="item in linhas">
+                                <!-- <li ng-repeat="item in linhas">
                                     <a href="#detalhes" class="item-link item-content" ng-click="carregaLinhaDetalhe(item)">
-                                        <!-- <div class="item-media">
-                                                <i class="icon icon-f7"></i>
-                                            </div> -->
                                         <div class="item-inner">
                                             <div class="item-title-row">
                                                 <div class="item-title">
                                                     {{item.codigo}} - {{item.origem}}
                                                 </div>
                                             </div>
-                                            <!-- <div class="item-subtitle">Beatles</div> -->
                                             <div class="item-text">{{item.destino}}</div>
+                                        </div>
+                                    </a>
+                                </li> -->
+                                <li ng-repeat="item in lines">
+                                    <a href="#detalhes" class="item-link item-content" ng-click="carregaLinhaDetalhe(item)">
+                                        <!-- <div class="item-media">
+                                                <i class="icon icon-f7"></i>
+                                            </div> -->
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <!-- <li class="list-group-title">{{item.linha | limitTo:3}}</li> -->
+                                                <div class="item-title">
+                                                    <small>
+                                                        {{item.linha}}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="item-subtitle">Beatles</div> -->
+                                            <!-- <div class="item-text">{{item.destino}}</div> -->
                                         </div>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    <!-- <div class="toolbar toolbar-bottom">
+                        <div>
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    
+                            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8292462256462069" data-ad-slot="9774620436" data-ad-format="auto"></ins>
+                            <script>
+                            window.onload = function() {
+                                (adsbygoogle = window.adsbygoogle || []).push({})
+                            };
+                            </script>
+                        </div>
+                    </div> -->
                 </div>
                 <!-- Detalhes page -->
                 <div class="page cached " data-page="detalhes" ng-controller="mainCtrl">
-                    <div class="page-content hide-bars-on-scroll">
+                    <div class="page-content ">
                         <div class="content-block">
                             <div class="list-block media-list accordion-list">
                                 <ul>
                                     <li>
                                         <div class="item-content">
+                                            <div class="item-media">
+                                                Sentido
+                                            </div>
                                             <div class="item-inner">
-                                                <a href="#" class="button active button-fill" ng-if="!linhaDetalhes.sentido" ng-click="montaLinhaDetalhada(true)">IDA</a>
-                                                <a href="#" class="button active button-fill" ng-if="linhaDetalhes.sentido" ng-click="montaLinhaDetalhada(false)">VOLTA</a>
+                                                <a href="#" class="button active button-fill" ng-if="!lineDetails.sentido" ng-click="switchWay()">IDA</a>
+                                                <a href="#" class="button active button-fill" ng-if="lineDetails.sentido" ng-click="switchWay()">VOLTA</a>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="item-divider"></li>
                                     <li>
                                         <div class="item-content">
-                                            <div class="item-media">
-                                                {{linhaDetalhes.codigo}}
-                                            </div>
+                                            <!-- <div class="item-media">
+                                                {{lineDetails.codigo}}
+                                            </div> -->
                                             <div class="item-inner">
                                                 <div class="item-title-row">
-                                                    <div class="item-title">{{linhaDetalhes.origem}}</div>
+                                                    <div class="item-title">{{lineDetails.linha}}</div>
                                                     <div class="item-after">
                                                         <div class="item-input">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="item-text">{{linhaDetalhes.destino}}</div>
-                                                <div class="item-subtitle">{{linhaDetalhes.operadora}}</div>
+                                                <!-- <div class="item-text">{{linhaDetalhes.destino}}</div>
+                                                <div class="item-subtitle">{{linhaDetalhes.operadora}}</div> -->
                                             </div>
                                         </div>
                                     </li>
@@ -158,7 +192,7 @@
                                     <li>
                                         <div class="item-content">
                                             <div class="item-inner">
-                                                <div class="item-title">Tarifa: {{linhaDetalhes.tarifa}}</div>
+                                                <div class="item-title">Tarifa: {{lineDetails.tarifa | currency}}</div>
                                             </div>
                                         </div>
                                     </li>
@@ -175,8 +209,8 @@
                                                     <!-- <div class="item-text"></div> -->
                                                     <div class="accordion-item-content">
                                                         <div class="content-block">
-                                                            <div ng-repeat="(key,value) in linhaDetalhes.itinerario track by key">
-                                                                {{value}}
+                                                            <div ng-repeat="stop in lineDetails.details.stops">
+                                                                {{stop.mnemonic}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -256,6 +290,17 @@
                     </div>
                 </div>
                 <!-- Services page -->
+            </div>
+            <div class="toolbar toolbar-bottom">
+                <div>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8292462256462069" data-ad-slot="9774620436" data-ad-format="auto"></ins>
+                    <script>
+                    window.onload = function() {
+                        (adsbygoogle = window.adsbygoogle || []).push({})
+                    };
+                    </script>
+                </div>
             </div>
         </div>
     </div>

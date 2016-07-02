@@ -1,0 +1,8 @@
+Vehicles:		http://api.plataforma.cittati.com.br/m3p/js/vehicles/service/35146
+Stops:			http://api.plataforma.cittati.com.br/m3p/js/stops/service/35189
+Notification:	http://api.plataforma.cittati.com.br/m3p/js/notification/service/35189
+
+
+Vehicles:		http://api.plataforma.cittati.com.br/m3p/js/vehicles/service/35146
+Stops:			http://api.plataforma.cittati.com.br/m3p/js/stops/service/35146
+Notification:	http://api.plataforma.cittati.com.br/m3p/js/notification/service/35146
