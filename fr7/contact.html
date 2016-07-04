@@ -1,37 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <link rel="stylesheet" href="">
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
+    <script type="text/javascript">
+    var app = angular.module("myApp", ["ngCookies"]);
+    app.config(function($cookiesProvider) {
+        // $cookiesProvider.defaults.expires = new Date(Date.now()+5000);
+        window.cok = $cookiesProvider;
+    });
+    app.controller("myAppCtrl", function($scope, $cookies) {
+        $scope.title = "myAppCtrl";
+        // $cookies.putObject("myCookie", []);
+        $scope.myCookie = $cookies.getObject("myCookie");
+
+        $scope.pushCookie = function() {
+            tmp = $cookies.getObject("myCookie") || [];
+            tmp.push(Date.now());
+            // console.log(tmp);
+            $cookies.putObject("myCookie", tmp );
+            $scope.getCookie();
+            window.localStorage.setItem("recents", JSON.stringify(tmp));
+        }
+        $scope.getCookie = function() {
+            console.log("Times");
+            $scope.myCookie = $cookies.getObject("myCookie");
+        }
+    });
+    </script>
 </head>
 <style type="text/css" media="screen">
-body > div {
-    border: solid red 1px;
-    min-height: 90px;
-    margin-bottom: 1em;
-}
 </style>
 
-<body>
+<body ng-controller="myAppCtrl">
+    <h1>
+        {{title}}
+    </h1>
     <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- GruBus -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8292462256462069" data-ad-slot="9774620436" data-ad-format="auto"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <button ng-click="pushCookie()">
+            Push Cookie
+        </button>
     </div>
-    <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- GruBus2 -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8292462256462069" data-ad-slot="5779582831" data-ad-format="auto"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <ul>
+        <li ng-repeat="item in myCookie">{{item}}</li>
+    </ul>
 </body>
 
 </html>

@@ -48,6 +48,23 @@ app.controller('mainCtrl', function($scope, $rootScope) {
         console.log(linha);
         $rootScope.lineDetails = linha;
         window.mapConfig = linha;
+
+
+    }
+    $scope.escolheLinha = function(linha) {
+        $scope.carregaLinhaDetalhe(linha);
+        local.set(linha);
+        $scope.carregaRecentes();
+    }
+    $scope.carregaRecentes = function() {
+        $scope.recents = local.get();
+        // console.log($scope.recents);
+
+    }
+
+    $scope.removeRecent = function(item) {
+        local.remove(item.id);
+        $scope.carregaRecentes();
     }
 
     function addWay(linha) {
@@ -71,8 +88,9 @@ app.controller('mainCtrl', function($scope, $rootScope) {
         return tmpDetail;
     }
 
-    $scope.montaLinhaDetalhada = function(sentido = true, tmpLinha = false) {
-        var linha = tmpLinha;
+    $scope.montaLinhaDetalhada = function() {
+        var linha = tmpLinha || false;
+        var sentido = sentido || false;
 
         if (!linha) {
             linha = $rootScope.linhaCompleta;
@@ -158,6 +176,7 @@ app.controller('mainCtrl', function($scope, $rootScope) {
     $scope.title = "Main";
     $scope.linhas = linhas;
     $scope.lines = lines;
+    $scope.recents = local.get();
 
 
 });

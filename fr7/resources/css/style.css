@@ -14,7 +14,7 @@
 
 #map {
     width: 100%;
-    min-height: calc(100vh - 125px);
+    min-height: calc(100vh - 170px);
     border: solid red 0px;
 }
 
@@ -37,4 +37,20 @@
 
 .page-content {
     padding-bottom: 90px !important;
+}
+
+.pull-right {
+    float: right;
+}
+
+.border {
+    font-weight: border;
+}
+
+.panel {
+    background-color: rgba(255,255,255,1) !important;
+}
+
+.img-responsive {
+    width: 100%;
 }

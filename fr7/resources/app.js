@@ -1,5 +1,14 @@
 // Initialize app
-var myApp = new Framework7();
+var myApp = new Framework7({
+    swipePanel: 'left'
+        // ,material:true
+        // ,materialPageLoadDelay:2000
+        // ,materialRipple:true
+        ,
+    pushState: true,
+    swipeBackPage: false
+        // pushStateNoAnimation:true
+});
 
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
@@ -7,7 +16,7 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
-    material: true,
+
 
     domCache: true,
     dynamicNavbar: true
@@ -31,11 +40,11 @@ $$(document).on('pageInit pageReinit', function(e) {
 
 $$('.popup-about').on('open', function() {
     initMap();
-    
+
 });
 $$('.popup-about').on('close', function() {
     removeBusInterval(busInterval);
-    
+
 });
 
 myApp.onPageBack("detalhes", function(page) {

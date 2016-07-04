@@ -1,1 +1,1 @@
-var app = angular.module("guabus", []);
+var app = angular.module("guarubus", ['ngCookies']);

@@ -1,3 +1,5 @@
+var localRecents = "recents";
+var localRecentsTotal = 20;
 var map;
 var origem;
 var destino;
@@ -6,6 +8,59 @@ var vehicleUrl = "http://api.plataforma.cittati.com.br/m3p/js/vehicles/service/"
 var busInterval;
 var timeUpdateBus = 10000;
 var busMarkers = [];
+
+
+
+var Local = function() {
+
+    this.get = function(id) {
+        curr = JSON.parse(localStorage.getItem(localRecents)) || [];
+        if (id == undefined) {
+            return curr;
+        }
+        var tmpLocal = {};
+        for (i = 0; i < curr.length; i++) {
+            // console.log(curr);
+            if (curr[i].id == id) {
+                tmpLocal = curr[i];
+                break;
+            }
+        }
+        return tmpLocal;
+    }
+
+
+    this.set = function(line) {
+        curr = this.get();
+        if (curr.length >= localRecentsTotal) {
+            curr.shift();
+        }
+        line.createAt = Date.now();
+        curr.push(line);
+        curr = JSON.stringify(curr);
+        localStorage.setItem(localRecents, curr);
+    }
+
+    this.remove = function(id) {
+        idExist = false;
+        curr = this.get();
+
+        curr = curr.filter(function(el) {
+            if (el.id == id) {
+                idExist = true;
+                return false;
+            }
+            return true;
+        });
+        curr = JSON.stringify(curr);
+        localStorage.setItem(localRecents, curr);
+        return idExist;
+    }
+    this.clear = function() {
+        localStorage.clear();
+    }
+
+}
 
 function initMap() {
     var directionsService = new google.maps.DirectionsService;
@@ -110,15 +165,25 @@ function setBusMarkers(myMap, myLine) {
             var infowindow = new google.maps.InfoWindow({
                 content: "<div>" + el.plate + "</div><div>" + el.prefix + "</div>"
             });
-            mk = new google.maps.Marker({
+            var mkbus = new google.maps.Marker({
                 map: myMap,
                 icon: 'resources/img/pin_bus.png',
                 position: new google.maps.LatLng(el.lat, el.lng)
             })
-            mk.addListener('click', function(ev) {
-                infowindow.open(map, mk)
+
+            var mP = map.getProjection();
+            var pos = mP.fromLatLngToPoint({
+                lat: mkbus.position.lat,
+                lng: mkbus.position.lng
             });
-            busMarkers.push(mk);
+
+            // console.log(pos);
+            // $("#map").append("<div class='vehicle' style='position:absolute;width:100px;height:100px;top:'"+pos.y+";left:></div>");
+            // mkbus.addListener('click', function(ev, ev2) {
+            //     infowindow.open(map, mkbus)
+
+            // });
+            busMarkers.push(mkbus);
         });
     }).fail(function(err) {
         console.log(err)
@@ -142,3 +207,6 @@ function updateBusMarkers(myMap, myLine) {
 function removeBusInterval(valInterval) {
     clearInterval(valInterval);
 }
+
+
+local = new Local();

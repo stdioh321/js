@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="guabus">
+<html ng-app="guarubus">
 
 <head>
     <!-- Required meta tags-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- Your app title -->
-    <title>APP</title>
+    <title>GuaruBus</title>
     <link rel="shortcut icon" type="image/png" href="favicon.ico" />
     <!-- Path to Framework7 iOS CSS theme styles-->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.css">
@@ -19,7 +19,9 @@
     <!-- CSS LIB -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <!-- JS LIB -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script type="text/javascript" src="bower_components/angular-locale-pt-br/angular-locale_pt-br.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="resources/css/style.css">
@@ -33,25 +35,29 @@
     <script src="resources/js/controllers.js"></script>
 </head>
 
-<body>
+<body ng-controller="mainCtrl" class="theme-green layout-dark">
     <!-- Status bar overlay for full screen mode (PhoneGap) -->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
-    <div class="panel panel-right panel-reveal">
+    <!-- <div class="panel panel-right panel-reveal">
         <div class="content-block">
             <p>RIGHT PANEL</p>
         </div>
-    </div>
-    <div class="panel panel-left panel-reveal">
+    </div> -->
+    <div class="panel panel-left panel-cover">
         <div class="content-block">
-            <p>Busca</p>
-            <a href="contact.html">Contact app</a>
-            <p>Busca por Rua</p>
-            <a href="about.html">Contact app</a>
-            <p>Recentes</p>
-            <a href="about.html">Contact app</a>
+            <div>
+                <img src="resources/img/guarulhos.png" alt="" class="img-responsive" />
+            </div>
+            <h2>
+            <a href="#recentes" data-popup="#recentes" class="open-popup close-panel">
+                Recentes
+        </a>
+                
+            </h2>
+            <!-- <a href="#recents" class="close-panel"></a> -->
         </div>
     </div>
     <div class="views">
@@ -59,14 +65,18 @@
             <!-- Navbar -->
             <div class="navbar">
                 <!-- Home page navbar -->
-                <div class="navbar-inner" data-page="index" ng-controller="mainCtrl">
-                    <div class="left "></div>
+                <div class="navbar-inner" data-page="index">
+                    <div class="left ">
+                        <a href="" data-panel="left" class="open-panel link icon-only">
+                            <i class="icon icon-bars"></i>
+                        </a>
+                    </div>
                     <div class="center">{{title}}</div>
                     <div class="right">
                     </div>
                 </div>
                 <!-- About page navbar -->
-                <div class="navbar-inner cached" data-page="detalhes" ng-controller="mainCtrl">
+                <div class="navbar-inner cached" data-page="detalhes">
                     <div class="left ">
                         <a href="" class="back">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -80,15 +90,17 @@
                     </div>
                 </div>
                 <!-- Services page navbar -->
-                <div class="navbar-inner cached" data-page="services">
-                    <div class="left "><a href="" class="back">Back</a></div>
-                    <div class="center">Services</div>
+                <div class="navbar-inner cached" data-page="recents">
+                    <div class="left ">
+                        <a href="" class="back">Back</a>
+                    </div>
+                    <div class="center">Recentes</div>
                 </div>
             </div>
             <!-- Pages -->
             <div class="pages navbar-through  navbar-fixed ">
                 <!-- Home page -->
-                <div class="page" data-page="index" ng-controller="mainCtrl">
+                <div class="page" data-page="index">
                     <form data-search-list=".list-block-search" data-search-in=".item-text,.item-title" class="searchbar searchbar-init">
                         <div class="searchbar-input">
                             <input type="search" placeholder="Search">
@@ -118,7 +130,7 @@
                                     </a>
                                 </li> -->
                                 <li ng-repeat="item in lines">
-                                    <a href="#detalhes" class="item-link item-content" ng-click="carregaLinhaDetalhe(item)">
+                                    <a href="#detalhes" class="item-link item-content" ng-click="escolheLinha(item)">
                                         <!-- <div class="item-media">
                                                 <i class="icon icon-f7"></i>
                                             </div> -->
@@ -153,7 +165,7 @@
                     </div> -->
                 </div>
                 <!-- Detalhes page -->
-                <div class="page cached " data-page="detalhes" ng-controller="mainCtrl">
+                <div class="page cached " data-page="detalhes">
                     <div class="page-content ">
                         <div class="content-block">
                             <div class="list-block media-list accordion-list">
@@ -289,7 +301,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Services page -->
             </div>
             <div class="toolbar toolbar-bottom">
                 <div>
@@ -307,20 +318,82 @@
     <!-- About Popup -->
     <div class="popup popup-about">
         <div class="navbar">
-            <div class="navbar-inner" data-page="index" ng-controller="mainCtrl">
+            <div class="navbar-inner" data-page="index">
                 <div class="left ">
-                    <p><a href="#" class="close-popup">Close</a></p>
+                    <p>
+                        <a href="#" class="close-popup">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                    </p>
                 </div>
-                <div class="center"></div>
+                <div class="center">
+                    Mapa
+                </div>
                 <div class="right"></div>
             </div>
         </div>
         <div class="content-block">
+            <h4>
+                {{lineDetails.linha}}
+            </h4>
             <div id="map"></div>
         </div>
     </div>
+    <div class="popup popup-recents" id="recentes">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left ">
+                    <p>
+                        <a href="#" class="close-popup">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="center">
+                    Recentes
+                </div>
+                <div class="right"></div>
+            </div>
+        </div>
+        <div class="content-block">
+                <h2 ng-show="recents.length == 0 ">
+                    Você não possui nenhuma linha recente
+                </h2>
+            <div class="list-block media-list" ng-show="recents.length > 0 ">
+                <ul>
+                    <li ng-repeat="item in recents | orderBy:createAt:true track by item.createAt">
+                        <a href="#detalhes" class="item-link close-popup" ng-click="carregaLinhaDetalhe(item)">
+                            <div class=" item-content">
+                                <!-- <div class="item-media">
+                                                <img src="..." width="44" />
+                                            </div> -->
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">
+                                            <small>{{item.linha}}</small>
+                                        </div>
+                                        <div class="item-after">
+                                            <a href="#" ng-click="removeRecent(item)">
+                                                &times;
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="item-text">
+                                        {{item.tarifa | currency}}
+                                    </div>
+                                    <div class="item-subtitle">
+                                        {{item.createAt | date:"dd/MM/yyyy hh:mm:ss"}}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.js"></script>
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    
     <!-- Path to your app js-->
     <script type="text/javascript" src="resources/app.js"></script>
     <script type="text/javascript" src="resources/utils.js"></script>
